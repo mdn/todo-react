@@ -4,15 +4,6 @@ import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 import { nanoid } from "nanoid";
 
-
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-
 const FILTER_MAP = {
   All: () => true,
   Active: task => !task.completed,
@@ -42,6 +33,7 @@ function App(props) {
   function deleteTask(id) {
     const remainingTasks = tasks.filter(task => id !== task.id);
     setTasks(remainingTasks);
+    listHeadingRef.current.focus();
   }
 
 
@@ -90,13 +82,6 @@ function App(props) {
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
   const listHeadingRef = useRef(null);
-  const prevTaskLength = usePrevious(tasks.length);
-
-  useEffect(() => {
-    if (tasks.length - prevTaskLength === -1) {
-      listHeadingRef.current.focus();
-    }
-  }, [tasks.length, prevTaskLength]);
 
   return (
     <div className="todoapp stack-large">
