@@ -31,5 +31,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@uxpin/merge-cli": "^2.7.0",
+    "babel-loader": "^8.1.0"
   }
 }
