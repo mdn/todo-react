@@ -5,7 +5,8 @@ module.exports = {
         name: 'General',
         include: [
           'src/components/Form.js',
-          'src/components/FilterButton.js'
+          'src/components/FilterButton.js',
+          'src/components/merge/todo/Todo.js'
         ]
       }
     ],
