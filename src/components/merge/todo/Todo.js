@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 import TodoM from '../../Todo';
 
 function Todo(props) {
-  return <TodoM />
+  return <TodoM {...props}/>
+}
+
+Todo.propTypes = {
+  /**
+   * If `true`, the todo will be marked as completed.
+   */
+  completed: PropTypes.bool
 }
 
 export default Todo;
