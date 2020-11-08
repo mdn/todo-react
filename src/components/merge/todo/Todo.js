@@ -14,6 +14,12 @@ Todo.propTypes = {
    */
   completed: PropTypes.bool,
 
+  /**
+   * The name of the todo.
+   */
+   name: PropTypes.string,
+
+   // next: add preset function for this?
   toggleTaskCompleted: PropTypes.func,
 }
 
