@@ -12,7 +12,9 @@ Todo.propTypes = {
   /**
    * If `true`, the todo will be marked as completed.
    */
-  completed: PropTypes.bool
+  completed: PropTypes.bool,
+
+  toggleTaskCompleted: PropTypes.func,
 }
 
 export default Todo;
