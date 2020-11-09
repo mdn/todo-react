@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 
 function Form(props) {
   const [name, setName] = useState('');
@@ -40,6 +41,15 @@ function Form(props) {
       </button>
     </form>
   );
+}
+
+Form.propTypes = {
+  addTask: PropTypes.func,
+
+  /**
+   * The name of the todo to create.
+   */
+  name: PropTypes.string
 }
 
 export default Form;
