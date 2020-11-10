@@ -56,7 +56,8 @@ input[type="text"] {
 }
 body {
   width: 100%;
-  max-width: 68rem;
+  /* Conflicts w/UXPin Dropdowns */
+  /* max-width: 68rem; */
   margin: 0 auto;
   font: 1.6rem/1.25 Arial, sans-serif;
   background-color: #f5f5f5;
@@ -69,6 +70,7 @@ body {
   }
 }
 /*END RESETS*/
+
 /* GLOBAL STYLES */
 .form-group > input[type="text"] {
   display: inline-block;
