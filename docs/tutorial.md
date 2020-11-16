@@ -118,7 +118,7 @@ Experimental mode should open a new browser window with a styled Form component:
 
 Now we'll work on adding the FilterButton to UXPin Merge. These buttons are displayed below the Form component:
 
-[insert screen]
+![filter_button_screen](/docs/images/filter_button_screen.png)
 
 Adding this component will be similar to the Form component. However, I'd also like to give designers the ability to specify the text that is displayed within the button. We'll do that via the [prop-types]() package.
 
@@ -138,15 +138,16 @@ function FilterButton(props) {
 +   name: PropTypes.string
 + }
 
++FilterButton.defaultProps = {
++  name: 'Button Name'
++};
+
 export default FilterButton;
 ```
 
 Add `'src/components/FilterButton.js'` to `uxpin.config.js` and restart `uxpin-merge --disable-tunneling`. A restart is required as we've updated the config file. When Experimental Mode starts, you should see a new "FilterButton" component listed in the sidebar. Click and drag this onto the canvas.
 
-[INSERT SCREEN OF BUTTON]
-
-HOW TO HANDLE PRESETS? IS ONE NEEDED?
-TODO
+![filter_button_on_canvas](/docs/images/filter_button_on_canvas.png)
 
 We have one component remaining: the Todo component.
 
