@@ -2,21 +2,27 @@
 
 Learn how to integrate an existing React app's components with [UXPin Merge](https://uxpin.com/merge).
 
-[UXPin Merge](https://uxpin.com/merge) lets designers create interactive prototypes with your custom React components. This eliminates the need for designers to manually maintain a design system within their design tool. In this tutorial, we'll integrate UXPin Merge with Mozilla's React Todo App example, making the app's components available within UXPin.
+[UXPin Merge](https://uxpin.com/merge) lets designers create interactive prototypes with custom React components. This eliminates the need for designers to manually maintain a design system within their design tool. This tutorial shows how to integrate UXPin Merge with [Mozilla's React Todo App example](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning), making the app's React components available within UXPin for designers to prototype.
 
-You can find a [live version of this app here](https://mdn.github.io/todo-react-build/) and the [original source code on GitHub](https://github.com/mdn/todo-react). This tutorial's completed code with a working UXPin integration [is available on GitHub]().
+You can find a live version of the React Todo app [here](https://mdn.github.io/todo-react-build/) and the [original source code on GitHub](https://github.com/mdn/todo-react). This tutorial's completed code with a working UXPin integration [is available on GitHub](https://github.com/itsderek23/todo-react).
 
 ## The components
 
-The Todo app has three React components: a Form to create a todo item, filter buttons, and a todo list item. These components are in the `src/components` directory and are outlined in the screenshot below:
+The Todo app has three React components:
+
+1. Form - create a todo item.
+2. FilterButton - filter todos by their current state.
+3. Todo - A todo list item.
+
+These components are in the `src/components` directory and are outlined in the screenshot below:
 
 ![components](/docs/images/components.png)
 
-When this tutorial is completed, a designer will be able to create a prototype with these components. Your real-world custom design system likely has many more than three components. However, the concepts we'll illustrate in this tutorial should apply to your DS as well.
+When this tutorial is completed, a designer will be able to create a prototype with these components. Your real-world custom design system (DS) likely has many more than three components. However, the concepts we'll illustrate in this tutorial should apply to your DS as well.
 
 ## Setup UXPin Merge
 
-First, fork the React Todo App on GitHub and clone the repo locally. Then install our UXPin Merge NodeJS package:
+First, fork the React Todo App [on GitHub](https://github.com/itsderek23/todo-react) and clone the repo locally. Then install our UXPin Merge NodeJS package:
 
 ```
 cd todo-react
@@ -56,20 +62,20 @@ module.exports = {
 };
 ```
 
-We're going to start with the Form component. We'll also use a UXPin-specific webpack config file.
+We're going to start with the Form component. We'll also use a UXPin-specific webpack config file (the `webpackConfig` option) which we'll cover next.
 
 ### Create a uxpin.webpack.config.js file
 
-UXPin typically doesn't need to use your entire existing Webpack build process. We'll use a more minimal build for UXPin. Create a `uxpin.webpack.config.js` and [copy and paste this content]() into the file.
+UXPin typically doesn't need to use your entire existing Webpack build process. We'll use a more minimal build for UXPin. Create a `uxpin.webpack.config.js` and [copy and paste this content](https://raw.githubusercontent.com/itsderek23/todo-react/master/uxpin.webpack.config.js) into the file.
 
 At this point we have the minimum configuration required to view the Form component.
 
 ## Experimental Mode
 
-To preview the Form component we can run UXPin Merge Experimental Mode. Experimental Mode lets us view components locally. Start Experimental Mode:
+We can run UXPin Merge Experimental Mode to preview the Form component. Experimental Mode lets us prototype with our local components to verify their behavior before pushing to UXPin. Start Experimental Mode:
 
 ```
-uxpin-merge --disable-tunneling
+uxpin-merge
 ```
 
 Using the settings provided in `uxpin.webpack.config.js`, Experimental mode bundles your components and opens a browser window. You can lay out components in a similar fashion as the UXPin Editor. After Experimental Mode loads, drag and drop the Form component from the sidebar onto the project canvas:
@@ -80,7 +86,7 @@ We have the Form component but it lacks styling. For that, we'll create a Global
 
 ## Using a Global Wrapper Component to apply CSS styles
 
-Just like your custom design system, this Todo app contains global styles. These are specified in the `src/index.css` file. All of our components need the styles specified in this file. We can load this file via a Global Wrapper Component. This wrapper will - you guessed it - wrap around every component we drag onto the UXPin canvas.
+Just like your custom design system, this Todo app contains global styles. These are specified in the `src/index.css` file. All of our components need the styles specified in this file. We can load this file via a Global Wrapper Component. This component will wrap around every component we drag onto the UXPin canvas.
 
 Create a wrapper file:
 
@@ -108,7 +114,7 @@ We need to tell UXPin to use this wrapper file. Add the following to `uxpin.conf
 wrapper: 'src/wrapper/UXPinWrapper.js',
 ```
 
-In your terminal, restart UXPin Experimental mode (the `uxpin-merge --disable-tunneling` command). A restart is required when updating the config file. A browser reload is only required when updating components.
+In your terminal, restart UXPin Experimental mode (the `uxpin-merge` command). A restart is required when updating the config file. A browser reload is only required when updating components.
 
 Experimental mode should open a new browser window with a styled Form component:
 
@@ -120,7 +126,7 @@ Now we'll work on adding the FilterButton to UXPin Merge. These buttons are disp
 
 ![filter_button_screen](/docs/images/filter_button_screen.png)
 
-Adding this component will be similar to the Form component. However, I'd also like to give designers the ability to specify the text that is displayed within the button. We'll do that via the [prop-types]() package.
+Adding this component will be similar to the Form component. However, I'd also like to give designers the ability to specify the text that is displayed within the button. We'll do that via the `prop-types` package.
 
 Component propTypes are mapped to the UXPin properties panel when editing a component. The existing FilterButton component doesn't use prop-types so let's add this to `FilterButton.js`:
 
@@ -149,13 +155,13 @@ Add `'src/components/FilterButton.js'` to `uxpin.config.js` and restart `uxpin-m
 
 ![filter_button_on_canvas](/docs/images/filter_button_on_canvas.png)
 
-We have one component remaining: the Todo component.
+Two of our three components are now working with UXPin Merge. We have one component remaining: the Todo component.
 
 ## Adding the Todo component with a wrapper
 
 We're moving on to our final component: the Todo. These are displayed within the list of todo items in the UI:
 
-[INSERT SCREEN]
+![todo on screen](/docs/images/todo_on_screen.png)
 
 When adding the FilterButton, we edited the FilterButton.js file to add propTypes. What if you want to isolate your Merge-specific changes and don't want to modify the source code of your components? We can create a wrapper that is specific to the Todo component for this. It's similar in concept to the Global wrapper component we used to apply CSS styles but will be specific to the Todo component.
 
@@ -166,9 +172,17 @@ mkdir -p src/components/merge/todo
 touch src/components/merge/todo/Todo.js
 ```
 
-[Copy and paste this code]() into Todo.js. We're importing the original Todo component as `TodoM` and returning this component in our newly defined `Todo` function. We specify propTypes just like we did with the FilterButton component on our newly defined `Todo` wrapper function.
+[Copy and paste this code](https://github.com/itsderek23/todo-react/blob/master/src/components/merge/todo/Todo.js) into Todo.js. We're importing the original Todo component as `TodoM` and returning this component in our newly defined `Todo` function. We specify propTypes just like we did with the FilterButton component on our newly defined `Todo` wrapper function.
 
-Add `'src/components/merge/todo/Todo.js'` to `uxpin.config.js` and restart `uxpin-merge --disable-tunneling`. After Experimental launches a new window, click-and-drag the Todo component onto the canvas.
+Add `'src/components/merge/todo/Todo.js'` to `uxpin.config.js` and restart `uxpin-merge --disable-tunneling`. After Experimental launches a new window, click-and-drag the Todo component onto the canvas:
+
+![todo no defaults](/docs/images/todo_no_defaults.png)
+
+The default display of the Todo component looks a bit empty without displaying the name of the Todo. We could use `defaultProps` like we did with the `FilterButton` or we can use the UXPin-specific presets functionality.
+
+### Specifying the default Todo display with presets
+
+TODO
 
 We have created UXPin Merge integrations for all three of our React components. It's time to let our design team use these components within the UXPin editor.
 
