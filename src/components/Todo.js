@@ -42,7 +42,7 @@ export default function Todo(props) {
           id={props.id}
           className="todo-text"
           type="text"
-          value={newName}
+          value={newName || props.name}
           onChange={handleChange}
           ref={editFieldRef}
         />
