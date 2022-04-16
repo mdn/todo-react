@@ -8,7 +8,33 @@ For the live version, see https://mdn.github.io/todo-react-build/.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Developing with Dagger
+
+This project can be build, tested and deployed with [Dagger](https://dagger.io).
+
+### `dagger do dev build`
+
+Build a development version of the app, and write it to the `build` folder.
+
+### `dagger do dev deploy`
+
+Deploy a development version of the app to Netlify.
+You will need a Netlify API token, stored in the environment variable `NETLIFY_TOKEN`
+
+Usage example:
+
+```
+export NETLIFY_TOKEN=************
+dagger do dev deploy --site "$USER-todoapp"
+```
+
+For available deployment flags, run `dagger do dev deploy --help`.
+
+### `dagger do dev test`
+
+Run the app tests in a containerized environment.
+
+## Developing with Yarn
 
 In the project directory, you can run:
 
