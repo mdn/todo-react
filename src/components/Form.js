@@ -21,7 +21,7 @@ function Form(props) {
   return (
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">
-        <label htmlFor="new-todo-input" className="label__lg">
+        <label htmlFor="new-todo-input" className="label__lg" data-testid="form-title">
           What needs to be done?
         </label>
       </h2>
@@ -35,7 +35,7 @@ function Form(props) {
         value={name}
         onChange={handleChange}
       />
-      <button type="submit" className="btn btn__primary btn__lg">
+      <button type="submit" className="btn btn__primary btn__lg" data-testid="add-button">
         Add
       </button>
     </form>
