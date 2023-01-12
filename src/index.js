@@ -13,6 +13,5 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App tasks={DATA} />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
