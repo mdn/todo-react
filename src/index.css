@@ -200,10 +200,6 @@ body {
     font-size: 2.4rem;
   }
 }
-.filters {
-  width: 100%;
-  margin: auto;
-}
 /* Todo item styles */
 .todo {
   display: flex;
