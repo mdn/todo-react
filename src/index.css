@@ -1,4 +1,3 @@
-
 /* RESETS */
 *,
 *::before,
@@ -200,10 +199,6 @@ body {
   [class*="__lg"] {
     font-size: 2.4rem;
   }
-}
-.filters {
-  width: 100%;
-  margin: unset auto;
 }
 /* Todo item styles */
 .todo {
