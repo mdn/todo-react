@@ -42,7 +42,7 @@ export default function Todo(props) {
           id={props.id}
           className="todo-text"
           type="text"
-          value={newName || props.name}
+          value={newName}
           onChange={handleChange}
           ref={editFieldRef}
         />
@@ -82,7 +82,7 @@ export default function Todo(props) {
         <button
           type="button"
           className="btn"
-          onClick={() => setEditing(true)}
+          onClick={() => {setName(props.name); setEditing(true)}}
           ref={editButtonRef}
           >
             Edit <span className="visually-hidden">{props.name}</span>
