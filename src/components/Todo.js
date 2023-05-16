@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-
 function usePrevious(value) {
-  const ref = useRef();
+  const ref = useRef(null);
   useEffect(() => {
     ref.current = value;
   });
@@ -11,7 +10,7 @@ function usePrevious(value) {
 
 export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
-  const [newName, setNewName] = useState('');
+  const [newName, setNewName] = useState("");
 
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
@@ -98,16 +97,13 @@ export default function Todo(props) {
     </div>
   );
 
-
   useEffect(() => {
     if (!wasEditing && isEditing) {
       editFieldRef.current.focus();
-    }
-    if (wasEditing && !isEditing) {
+    } else if (wasEditing && !isEditing) {
       editButtonRef.current.focus();
     }
   }, [wasEditing, isEditing]);
-
 
   return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
 }
