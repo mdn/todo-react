@@ -24,9 +24,7 @@ export default function Todo(props) {
   function handleBlur(e) {
     if (e.target.value === "") {
       setNewName(props.name);
-      return;
     }
-    setNewName(e.target.value);
   }
 
   function handleSubmit(e) {
