@@ -45,7 +45,7 @@ jobs:
       - name: Setup pages
         uses: actions/configure-pages@v2
       - name: Upload build artifacts
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           # Upload build directory
           path: "build"
