@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 function usePrevious(value) {
-  const ref = useRef();
+  const ref = useRef(null);
   useEffect(() => {
     ref.current = value;
   });
@@ -99,8 +99,7 @@ export default function Todo(props) {
   useEffect(() => {
     if (!wasEditing && isEditing) {
       editFieldRef.current.focus();
-    }
-    if (wasEditing && !isEditing) {
+    } else if (wasEditing && !isEditing) {
       editButtonRef.current.focus();
     }
   }, [wasEditing, isEditing]);
