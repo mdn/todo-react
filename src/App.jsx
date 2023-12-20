@@ -89,7 +89,7 @@ function App(props) {
   const prevTaskLength = usePrevious(tasks.length);
 
   useEffect(() => {
-    if (tasks.length - prevTaskLength === -1) {
+    if (tasks.length < prevTaskLength) {
       listHeadingRef.current.focus();
     }
   }, [tasks.length, prevTaskLength]);
