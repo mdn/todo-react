@@ -46,16 +46,17 @@ function App(props) {
     const editedTaskList = tasks.map((task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
-        //
+        // Copy the task and update its name
         return { ...task, name: newName };
       }
+      // Return the original task if it's not the edited task
       return task;
     });
     setTasks(editedTaskList);
   }
 
   const taskList = tasks
-    .filter(FILTER_MAP[filter])
+    ?.filter(FILTER_MAP[filter])
     .map((task) => (
       <Todo
         id={task.id}
@@ -103,8 +104,10 @@ function App(props) {
         {headingText}
       </h2>
       <ul
+        aria-labelledby="list-heading"
         className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading">
+        role="list"
+      >
         {taskList}
       </ul>
     </div>
