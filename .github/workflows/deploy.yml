@@ -31,8 +31,8 @@ jobs:
       - name: Build
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: "npm"
+          node-version-file: ".nvmrc"
+          cache: "yarn"
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
@@ -47,8 +47,8 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload build directory
-          path: "build"
+          # Upload dist directory
+          path: "dist"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
