@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
@@ -46,16 +46,17 @@ function App(props) {
     const editedTaskList = tasks.map((task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
-        //
+        // Copy the task and update its name
         return { ...task, name: newName };
       }
+      // Return the original task if it's not the edited task
       return task;
     });
     setTasks(editedTaskList);
   }
 
   const taskList = tasks
-    .filter(FILTER_MAP[filter])
+    ?.filter(FILTER_MAP[filter])
     .map((task) => (
       <Todo
         id={task.id}
@@ -89,7 +90,7 @@ function App(props) {
   const prevTaskLength = usePrevious(tasks.length);
 
   useEffect(() => {
-    if (tasks.length - prevTaskLength === -1) {
+    if (tasks.length < prevTaskLength) {
       listHeadingRef.current.focus();
     }
   }, [tasks.length, prevTaskLength]);
@@ -103,8 +104,10 @@ function App(props) {
         {headingText}
       </h2>
       <ul
+        aria-labelledby="list-heading"
         className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading">
+        role="list"
+      >
         {taskList}
       </ul>
     </div>

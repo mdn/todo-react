@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function usePrevious(value) {
   const ref = useRef(null);
@@ -8,7 +8,7 @@ function usePrevious(value) {
   return ref.current;
 }
 
-export default function Todo(props) {
+function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
 
@@ -17,15 +17,15 @@ export default function Todo(props) {
 
   const wasEditing = usePrevious(isEditing);
 
-  function handleChange(e) {
-    setNewName(e.target.value);
+  function handleChange(event) {
+    setNewName(event.target.value);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!newName.trim()) {
-      return;
-    }
+  // NOTE: As written, this function has a bug: it doesn't prevent the user
+  // from submitting an empty form. This is left as an exercise for developers
+  // working through MDN's React tutorial.
+  function handleSubmit(event) {
+    event.preventDefault();
     props.editTask(props.id, newName);
     setNewName("");
     setEditing(false);
@@ -43,7 +43,6 @@ export default function Todo(props) {
           type="text"
           value={newName}
           onChange={handleChange}
-          placeholder={props.name}
           ref={editFieldRef}
         />
       </div>
@@ -106,3 +105,5 @@ export default function Todo(props) {
 
   return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
 }
+
+export default Todo;
