@@ -12,7 +12,6 @@ function Form(props) {
     setName("");
   }
 
-
   function handleChange(event) {
     setName(event.target.value);
   }
