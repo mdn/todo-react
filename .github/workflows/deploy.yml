@@ -34,11 +34,11 @@ jobs:
           node-version-file: ".nvmrc"
           cache: "yarn"
       - name: Run install
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: install
       - name: Build production bundle
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: build
 
