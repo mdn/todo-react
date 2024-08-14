@@ -84,7 +84,7 @@ function App(props) {
   }
 
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
-  const headingText = `${taskList.length} ${tasksNoun}`;
+  let headingText = `${taskList.length} ${tasksNoun}`;
   if (filter === "Active") headingText += " remaining";
   if (filter === "Completed") headingText += " completed";
 
