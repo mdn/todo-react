@@ -24,6 +24,9 @@ function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
   const [filter, setFilter] = useState("All");
 
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
   function toggleTaskCompleted(id) {
     const updatedTasks = tasks.map((task) => {
       // if this task has the same ID as the edited task
