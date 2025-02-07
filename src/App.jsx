@@ -116,5 +116,5 @@ function App(props) {
     </div>
   );
 }
-
+<button onClick={toggleDarkMode}>Toggle Dark Mode</button>
 export default App;
