@@ -294,3 +294,8 @@ body {
   opacity: 1;
 }
 /* End checkbox styles */
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
