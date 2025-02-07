@@ -1,4 +1,25 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
+
+function App() {
+    const [tasks, setTasks] = useState(() => {
+        return JSON.parse(localStorage.getItem("tasks")) || [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
+
+    return (
+        <div>
+            <h1>Bisola Kayode's To-Do App</h1>
+            <ul>
+                {tasks.map((task, index) => (
+                    <li key={index}>{task}</li>
+                ))}
+            </ul>
+        </div>
+    );
+}
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
