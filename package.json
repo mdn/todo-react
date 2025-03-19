@@ -11,9 +11,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@grafana/faro-react": "^1.14.1",
+    "@grafana/faro-web-sdk": "^1.14.1",
+    "@grafana/faro-web-tracing": "^1.14.1",
     "nanoid": "^5.1.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.79",

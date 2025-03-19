@@ -1,5 +1,20 @@
 # todo-react
 
+Kinsey notes:
+works on node 22.
+
+```
+yarn
+yarn build
+yarn run preview
+```
+
+Added a `.env` file with the generated Faro url from my Grafana Cloud instance as this is sensitive data.
+A drawback to this app is it's a single page app so you won't see route changes.
+
+---
+
+
 Sample todo app built with the React/ReactDOM framework. For the accompanying documentation, see
 [Understanding client-side JavaScript frameworks
 : React tutorials](https://wiki.developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks#React_tutorials).
