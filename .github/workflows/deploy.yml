@@ -32,7 +32,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: "yarn"
       - name: Run install
         uses: borales/actions-yarn@v5
         with:
