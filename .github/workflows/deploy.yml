@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Build
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: ".nvmrc"
       - name: Run install
