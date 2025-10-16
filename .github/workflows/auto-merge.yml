@@ -7,6 +7,6 @@ jobs:
   auto-merge:
     uses: mdn/workflows/.github/workflows/auto-merge.yml@main
     with:
-      target-repo: 'mdn/todo-react'
+      target-repo: "mdn/todo-react"
     secrets:
       GH_TOKEN: ${{ secrets.AUTOMERGE_TOKEN }}
