@@ -3,10 +3,13 @@ name: auto-merge
 on:
   pull_request_target:
 
+# No GITHUB_TOKEN permissions, as we use AUTOMERGE_TOKEN instead.
+permissions: {}
+
 jobs:
   auto-merge:
     uses: mdn/workflows/.github/workflows/auto-merge.yml@main
     with:
-      target-repo: 'mdn/todo-react'
+      target-repo: "mdn/todo-react"
     secrets:
       GH_TOKEN: ${{ secrets.AUTOMERGE_TOKEN }}

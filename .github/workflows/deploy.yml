@@ -27,30 +27,30 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
       - name: Build
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
           node-version-file: ".nvmrc"
           package-manager-cache: false
       - name: Run install
-        uses: borales/actions-yarn@v5
+        uses: borales/actions-yarn@3766bb1335b98fb13c60eaf358fe20811b730a88 # v5
         with:
           cmd: install
       - name: Build production bundle
-        uses: borales/actions-yarn@v5
+        uses: borales/actions-yarn@3766bb1335b98fb13c60eaf358fe20811b730a88 # v5
         with:
           cmd: build
 
       - name: Setup pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
       - name: Upload build artifacts
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
         with:
           # Upload dist directory
           path: "dist"
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
