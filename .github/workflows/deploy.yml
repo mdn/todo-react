@@ -8,7 +8,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -34,6 +34,7 @@ jobs:
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           node-version-file: ".nvmrc"
+          check-latest: true
           package-manager-cache: false
       - name: Run install
         uses: borales/actions-yarn@3766bb1335b98fb13c60eaf358fe20811b730a88 # v5
