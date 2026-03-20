@@ -7,12 +7,13 @@ function Form(props) {
   // from submitting an empty form. This is left as an exercise for developers
   // working through MDN's React tutorial.
   function handleSubmit(event) {
-    event.preventDefault();
+    if(!name.trim() == ""){event.preventDefault();
     props.addTask(name);
-    setName("");
+    setName("")};
   }
 
   function handleChange(event) {
+    // console.log(event.target.value)
     setName(event.target.value);
   }
 
