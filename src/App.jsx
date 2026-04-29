@@ -20,9 +20,36 @@ const FILTER_MAP = {
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
+const SORT_MAP = {
+  "Name A-Z": (a, b) => a.name.localeCompare(b.name),
+  "Name Z-A": (a, b) => b.name.localeCompare(a.name),
+  "Created Order": (a, b) => {
+    const aNum = parseInt(a.id.split("-")[1], 36);
+    const bNum = parseInt(b.id.split("-")[1], 36);
+    return aNum - bNum;
+  },
+};
+
+const SORT_NAMES = Object.keys(SORT_MAP);
+
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState(() => {
+    const savedFilter = localStorage.getItem("todo-filter");
+    return savedFilter || "All";
+  });
+  const [sort, setSort] = useState(() => {
+    const savedSort = localStorage.getItem("todo-sort");
+    return savedSort || "Created Order";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todo-filter", filter);
+  }, [filter]);
+
+  useEffect(() => {
+    localStorage.setItem("todo-sort", sort);
+  }, [sort]);
 
   function toggleTaskCompleted(id) {
     const updatedTasks = tasks.map((task) => {
@@ -56,7 +83,8 @@ function App(props) {
   }
 
   const taskList = tasks
-    ?.filter(FILTER_MAP[filter])
+    ?.sort(SORT_MAP[sort])
+    .filter(FILTER_MAP[filter])
     .map((task) => (
       <Todo
         id={task.id}
@@ -75,6 +103,15 @@ function App(props) {
       name={name}
       isPressed={name === filter}
       setFilter={setFilter}
+    />
+  ));
+
+  const sortList = SORT_NAMES.map((name) => (
+    <FilterButton
+      key={name}
+      name={name}
+      isPressed={name === sort}
+      setFilter={setSort}
     />
   ));
 
@@ -99,7 +136,14 @@ function App(props) {
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
       <Form addTask={addTask} />
-      <div className="filters btn-group stack-exception">{filterList}</div>
+      <div className="filters btn-group stack-exception">
+        <span className="visually-hidden">Filter tasks: </span>
+        {filterList}
+      </div>
+      <div className="sorting btn-group stack-exception">
+        <span className="visually-hidden">Sort tasks: </span>
+        {sortList}
+      </div>
       <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
         {headingText}
       </h2>
