@@ -23,11 +23,7 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 const SORT_MAP = {
   "Name A-Z": (a, b) => a.name.localeCompare(b.name),
   "Name Z-A": (a, b) => b.name.localeCompare(a.name),
-  "Created Order": (a, b) => {
-    const aNum = parseInt(a.id.split("-")[1], 36);
-    const bNum = parseInt(b.id.split("-")[1], 36);
-    return aNum - bNum;
-  },
+  "Created Order": (a, b) => (a.createdAt || 0) - (b.createdAt || 0),
 };
 
 const SORT_NAMES = Object.keys(SORT_MAP);
@@ -82,8 +78,9 @@ function App(props) {
     setTasks(editedTaskList);
   }
 
-  const taskList = tasks
-    ?.sort(SORT_MAP[sort])
+  const taskList = (tasks || [])
+    .slice()
+    .sort(SORT_MAP[sort])
     .filter(FILTER_MAP[filter])
     .map((task) => (
       <Todo
@@ -116,7 +113,7 @@ function App(props) {
   ));
 
   function addTask(name) {
-    const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
+    const newTask = { id: "todo-" + nanoid(), name: name, completed: false, createdAt: Date.now() };
     setTasks([...tasks, newTask]);
   }
 
