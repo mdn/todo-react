@@ -11,6 +11,7 @@ module.exports = {
 	parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
 	settings: { react: { version: '18.2' } },
 	plugins: ['react-refresh'],
+	overrides: [{ files: ['tests/**/*.js'], env: { node: true } }],
 	rules: {
 		"react/jsx-first-prop-new-line": [1, "multiline"],
 		'react/prop-types': 'off',

@@ -19,6 +19,23 @@ yarn && yarn start
 
 More information about the available commands can be found in the [Contributing](CONTRIBUTING.md) guide.
 
+## Validation
+
+Use the Node version in `.nvmrc`. This Vite project provides the following checks:
+
+```bash
+npm test
+npm run lint
+npm run build
+```
+
+`npm test` uses Node's built-in test runner, jsdom, and Vite's existing JSX
+transform to render the actual React app without starting a web server. The tests
+cover clearing completed tasks in all three filter views, disabled button states,
+empty lists, focus after clearing, and the existing add/edit/toggle/delete actions.
+The test-only jsdom dependency may emit a `punycode` deprecation warning on recent
+Node versions.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

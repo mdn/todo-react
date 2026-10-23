@@ -81,6 +81,10 @@ body {
   padding: 0.8rem 1rem 0.7rem;
   text-transform: capitalize;
 }
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
 .btn.toggle-btn {
   border-color: #d3d3d3;
   border-width: 1px;

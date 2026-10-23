@@ -42,6 +42,12 @@ function App(props) {
     setTasks(remainingTasks);
   }
 
+  function clearCompletedTasks() {
+    setTasks((currentTasks) => currentTasks.filter((task) => !task.completed));
+  }
+
+  const hasCompletedTasks = tasks.some((task) => task.completed);
+
   function editTask(id, newName) {
     const editedTaskList = tasks.map((task) => {
       // if this task has the same ID as the edited task
@@ -100,6 +106,14 @@ function App(props) {
       <h1>TodoMatic</h1>
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">{filterList}</div>
+      <button
+        type="button"
+        className="btn"
+        onClick={clearCompletedTasks}
+        disabled={!hasCompletedTasks}
+      >
+        清除已完成任务
+      </button>
       <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
         {headingText}
       </h2>
